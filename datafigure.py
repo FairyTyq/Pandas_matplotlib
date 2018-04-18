@@ -12,14 +12,20 @@ from matplotlib import pyplot as plt
 '''
 
 def data_plot():
+    # 读取json文件中的数据
     f_data = pandas.read_json('/home/shiyanlou/Code/user_study.json')
+    # 按照user_id分组，并对minutes求和
     data = f_data[['user_id','minutes']].groupby('user_id').sum()
+    # 创建一个figure对象
     fig = plt.figure()
+    # 添加坐标轴，以及坐标轴的title，以及x轴，y轴的信息
     ax = fig.add_subplot(1,1,1)
     ax.set_title('StudyData')
     ax.set_xlabel('User ID')
     ax.set_ylabel('Study Time')
+    # 在坐标轴上按plot方式描绘数据
     ax.plot(data)
+    # 显示图形
     plt.show()
 
     return ax
